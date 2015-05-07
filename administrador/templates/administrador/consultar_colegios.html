@@ -1,0 +1,49 @@
+{% extends "administrador_base.html" %}
+{% load staticfiles %}
+
+{% block title %} Consultar Colegios {% endblock %}
+
+{% block content %}
+
+    <script src="{% static "administrador/verificar_colegio.js" %}"></script>
+
+    <h1 class="titulo">
+        ADMINISTRADOR <BR />
+        Consultar Colegios
+    </h1>
+
+    <div class="tabla">
+    <form name="registrar_colegio" action="{% url 'administrador:registrar_colegio' %}" method="post">
+        {% csrf_token %}
+        <table class="formulario">
+            <tbody>
+                <tr>
+                    <td class="etiqueta"><label for="colegio">Colegio:</label></td>
+                    <td class="control"><input id="colegio" type="text" name="colegio" maxlength="100" autofocus="1" value="{{ colegio }}"/></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><label for="departamento">Departamento:</label></td>
+                    <td class="control">
+                        <select id="departamento" name="departamento" />
+                        {% for d in departamentos %}
+                            <option value="{{ d.pk }}" {% if d.primary_key == id_departamento %}selected{% endif %}>
+                                {{ d.departamento }}
+                            </option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+                <tr class="botones">
+                    <td colspan = "2">
+                        <input id="origen" type="hidden" name="origen" value="Registrar_Colegio">
+                        <input class="boton" id="create" name="create" type="submit" value="Crear" onclick="return validateForm()"/>
+                        <input class="boton" id="cancel" name="cancel" type="submit" value="Cancelar" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    </div>
+
+{% endblock %}

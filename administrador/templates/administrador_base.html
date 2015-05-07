@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="{% static 'principal/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'administrador/style.css' %}" />
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        {% if debug %}
+            Debug Info {{ Debug }}
+        {% endif %}
+
+        <BR />
+        {% block content %}{% endblock %}
+    </body>
+</html>
+

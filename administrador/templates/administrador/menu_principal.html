@@ -1,0 +1,38 @@
+{% extends "administrador_base.html" %}
+
+{% block title %} ADMINISTRADOR - MENU PRINCIPAL {% endblock %}
+
+{% block content %}
+    <h1 class="titulo">
+        ADMINISTRADOR <BR />
+        MENU PRINCIPAL
+    </h1>
+
+    <div class="tabla">
+        <table class="formulario">
+            <tbody>
+                <tr>
+                    <td><a class="enlace" href="{%  url 'administrador:crear_usuario' %}">Crear nuevo usuario</a></td>
+                </tr>
+                <tr>
+                    <td><a class="enlace" href="{%  url 'administrador:registrar_departamento' %}">Registrar un nuevo departamento</a></td>
+                </tr>
+                <tr>
+                    <td><a class="enlace" href="{%  url 'administrador:registrar_colegio' %}">Registrar un nuevo colegio</a></td>
+                </tr>
+                <tr>
+                    <td><a class="enlace" href="/admin/administrador/colegio/">Consultar colegios</a></td>
+                </tr>
+                <tr class="botones">
+                    <td colspan = "2">
+                        <form name="crear_usuario" action="{% url 'login:end_session' %}" method="post">
+                            {% csrf_token %}
+                            <input class="boton" id="logout" type="submit" value="LogOut" />
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
