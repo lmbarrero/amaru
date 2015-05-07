@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2381750724">
+    <data-source source="LOCAL" name="PostgreSQL - Amaru2DB@localhost" uuid="d1c8c1da-fb6a-452f-9f72-790cd0cdc9f8">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Amaru2DB</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
