@@ -22,7 +22,7 @@ class Usuario(models.Model):
             rn = self.user.last_name + ', ' + self.user.first_name
         else:
             rn = 'Usuario sin nombre'
-            
+
         return rn
 
 
