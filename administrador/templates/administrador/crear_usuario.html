@@ -4,7 +4,9 @@
 
 {% block content %}
     <h1 class="titulo">
-        ADMINISTRADOR <BR />
+        {% if tipo_usuario == "Administrador" %}
+            {{ tipo_usuario }} <BR />
+        {% endif %}
         Crear un nuevo usuario
     </h1>
 
@@ -27,9 +29,11 @@
                 </tr>
                 <tr>
                     <td class="radio" colspan = "2">
+                        {% if tipo_usuario == "Administrador" %}
                         <label for="admin">Administrador</label>
                         <input id=admin" type="radio" name="tipo_usuario" value="admin">
                         &nbsp;&nbsp;
+                        {% endif %}
                         <label for="profesor">Profesor</label>
                         <input id="profesor" type="radio" name="tipo_usuario" value="profesor">                        &nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;
@@ -45,7 +49,22 @@
                     <td class="etiqueta"><label for="password">Password:</label></td>
                     <td class="control"><input id="password" type="password" name="password" maxlength="100"/></td>
                 </tr>
-
+                <tr>
+                    <td class="etiqueta"><label for="direccion">Dirección:</label></td>
+                    <td class="control"><input id="direccion" type="text" name="direccion" maxlength="100"/></td>
+                </tr>
+                <tr>
+                    <td class="etiqueta"><label for="telefono">Teléfono:</label></td>
+                    <td class="control"><input id="telefono" type="text" name="telefono" maxlength="100"/></td>
+                </tr>
+                {% if tipo_usuario == "Administrador" %}
+                <tr>
+                    <td class='checkbox' colspan = "2">
+                        <label for="habilitado">Habilitado</label>
+                        <input type="checkbox" name="habilitado" value="habilitado">
+                    </td>
+                </tr>
+                {% endif %}
                 <tr class="botones">
                     <td colspan = "2">
                         <input id="origen" type="hidden" name="origen" value="Crear_Usuario">

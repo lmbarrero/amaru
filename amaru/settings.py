@@ -25,8 +25,7 @@ SECRET_KEY = 'k57lb8&i!ht6zvri+h-4r%&&&27^vp9vax7^7ytx^h0$wdia^h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost']  # Change in production server
 
 # Application definition
 
@@ -37,7 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'principal',
     'login',
+    'usuario',
+    'administrador',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'amaru.urls'
@@ -109,7 +112,8 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/La_Paz'
 
 USE_I18N = True
 
@@ -121,4 +125,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = ''
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,  'templates'),
+)
+
+INTERNAL_IPS = (
+    '0.0.0.0',
+    '127.0.0.1',
+)
