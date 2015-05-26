@@ -76,6 +76,12 @@
     font-size: 1.25em;
 }
 
+.mensaje {
+    text-align: center;
+    font-style: italic;
+    font-size: 1em;
+}
+
 .radio {
     text-align: center;
     font-style: italic;

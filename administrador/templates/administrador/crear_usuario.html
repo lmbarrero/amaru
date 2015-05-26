@@ -29,16 +29,21 @@
                 </tr>
                 <tr>
                     <td class="radio" colspan = "2">
-                        {% if tipo_usuario == "Administrador" %}
+                    {% if tipo_usuario == "Administrador" %}
                         <label for="admin">Administrador</label>
                         <input id=admin" type="radio" name="tipo_usuario" value="admin">
                         &nbsp;&nbsp;
-                        {% endif %}
+                    {% endif %}
                         <label for="profesor">Profesor</label>
-                        <input id="profesor" type="radio" name="tipo_usuario" value="profesor">                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input id="profesor" type="radio" name="tipo_usuario" value="profesor">                         </td>
+                </tr>
+                <tr>
+                    <td class="radio" colspan = "2">
+                        <label for="estudiante_colegio">Estudiante Colegio</label>
+                        <input id="estudiante_colegio" type="radio" name="tipo_usuario" value="estudiante_colegio" checked>                        &nbsp;&nbsp;
                         &nbsp;&nbsp;
-                        <label for="estudiante">Estudiante</label>
-                        <input id="estudiante" type="radio" name="tipo_usuario" value="estudiante" checked>
+                        <label for="estudiante_universitario">Estudiante Universitario</label>
+                        <input id="estudiante_universitario" type="radio" name="tipo_usuario" value="estudiante_universitario">
                     </td>
                 </tr>
                 <tr>

@@ -1,10 +1,12 @@
 {% extends "administrador_base.html" %}
 
-{% block title %} Registrar Colegio {% endblock %}
+{% block title %} Registrar Centro Educativo {% endblock %}
 
 {% block content %}
     <h1 class="titulo">
-        {{ usuario }} <BR />
+        {% if tipo_usuario != 'Nuevo_Usuario' %}
+        {{ tipo_usuario }} <BR />
+        {% endif %}
         Registrar Colegio
     </h1>
 
@@ -28,7 +30,7 @@
                 <tr>
                     <td class="radio" colspan = "2">
                         <label for="admin">Administrador</label>
-                        <input id=admin" type="radio" name="tipo_usuario" value="admin">
+                        <input id="admin" type="radio" name="tipo_usuario" value="admin">
                         &nbsp;&nbsp;
                         <label for="profesor">Profesor</label>
                         <input id="profesor" type="radio" name="tipo_usuario" value="profesor">                        &nbsp;&nbsp;&nbsp;&nbsp;

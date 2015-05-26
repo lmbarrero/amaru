@@ -1321,6 +1321,8 @@
       <column name="spcowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="spcacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="spcoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_tablespace_oid_index" unique="true" columns="oid"/>
+      <index name="pg_tablespace_spcname_index" unique="true" columns="spcname"/>
     </table>
     <table name="pg_tablespace_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1355,6 +1357,9 @@
       <column name="tgattr" sqlType="int2vector" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="tgargs" sqlType="bytea" precision="2147483647" scale="0" nullable="true" jdbcType="-2"/>
       <column name="tgqual" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
+      <index name="pg_trigger_oid_index" unique="true" columns="oid"/>
+      <index name="pg_trigger_tgrelid_tgname_index" unique="true" columns="tgrelid,tgname"/>
+      <index name="pg_trigger_tgconstraint_index" unique="false" columns="tgconstraint"/>
     </table>
     <table name="pg_trigger_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1371,6 +1376,8 @@
       <column name="cfgnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="cfgowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="cfgparser" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_ts_config_cfgname_index" unique="true" columns="cfgname,cfgnamespace"/>
+      <index name="pg_ts_config_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_ts_config_cfgname_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="cfgname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1381,6 +1388,7 @@
       <column name="maptokentype" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="mapseqno" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="mapdict" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_ts_config_map_index" unique="true" columns="mapcfg,maptokentype,mapseqno"/>
     </table>
     <table name="pg_ts_config_map_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="mapcfg" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1396,6 +1404,8 @@
       <column name="dictowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="dicttemplate" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="dictinitoption" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_ts_dict_dictname_index" unique="true" columns="dictname,dictnamespace"/>
+      <index name="pg_ts_dict_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_ts_dict_dictname_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="dictname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1412,6 +1422,8 @@
       <column name="prsend" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="prsheadline" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="prslextype" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_ts_parser_oid_index" unique="true" columns="oid"/>
+      <index name="pg_ts_parser_prsname_index" unique="true" columns="prsname,prsnamespace"/>
     </table>
     <table name="pg_ts_parser_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1425,6 +1437,8 @@
       <column name="tmplnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="tmplinit" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="tmpllexize" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_ts_template_oid_index" unique="true" columns="oid"/>
+      <index name="pg_ts_template_tmplname_index" unique="true" columns="tmplname,tmplnamespace"/>
     </table>
     <table name="pg_ts_template_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1464,6 +1478,8 @@
       <column name="typdefaultbin" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="typdefault" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="typacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_type_oid_index" unique="true" columns="oid"/>
+      <index name="pg_type_typname_nsp_index" unique="true" columns="typname,typnamespace"/>
     </table>
     <table name="pg_type_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1487,6 +1503,8 @@
       <column name="umuser" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="umserver" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="umoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_user_mapping_oid_index" unique="true" columns="oid"/>
+      <index name="pg_user_mapping_user_server_index" unique="true" columns="umuser,umserver"/>
     </table>
     <table name="pg_user_mapping_oid_index" schema="pg_catalog" catalog="Amaru2DB" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1509,15 +1527,21 @@
       <column name="viewowner" sqlType="name" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="definition" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
     </table>
-    <table name="administrador_colegio" schema="public" catalog="Amaru2DB" type="TABLE">
-      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYWRtaW5pc3RyYWRvcl9jb2xlZ2lvX2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
-      <column name="colegio" sqlType="varchar" precision="30" scale="0" nullable="false" jdbcType="12"/>
+    <table name="administrador_centroeducativo" schema="public" catalog="Amaru2DB" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYWRtaW5pc3RyYWRvcl9jZW50cm9lZHVjYXRpdm9faWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="centro_educativo" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="tipo" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="direccion" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="telefono" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="habilitado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="departamento_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="administrador_centroeducativo_pkey" columns="id"/>
+      <foreign-key name="D92c6824d4e9346383592ac75c447460" columns="departamento_id" ref-table="administrador_departamento" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="administrador_centroeducativo_centro_educativo_key" unique="true" columns="centro_educativo"/>
+      <index name="administrador_centroeduc_centro_educativo_3b05f9111279f2d5_like" unique="false" columns="centro_educativo"/>
+      <index name="administrador_centroeducativo_f5acfb16" unique="false" columns="departamento_id"/>
     </table>
-    <table name="administrador_colegio_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
+    <table name="administrador_centroeducativo_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -1532,6 +1556,10 @@
     <table name="administrador_departamento" schema="public" catalog="Amaru2DB" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYWRtaW5pc3RyYWRvcl9kZXBhcnRhbWVudG9faWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="departamento" sqlType="varchar" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="administrador_departamento_pkey" columns="id"/>
+      <exported-key name="D92c6824d4e9346383592ac75c447460" table="administrador_centroeducativo" schema="public" catalog="Amaru2DB" columns="departamento_id"/>
+      <index name="administrador_departamento_departamento_key" unique="true" columns="departamento"/>
+      <index name="administrador_departamento_departamento_17da4b93c82dae75_like" unique="false" columns="departamento"/>
     </table>
     <table name="administrador_departamento_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1551,10 +1579,17 @@
       <column name="direccion" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="telefono" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="habilitado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="administrador_usuario_pkey" columns="user_id"/>
+      <foreign-key name="administrador_usuario_user_id_428c50bf92d4c950_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
     </table>
     <table name="auth_group" schema="public" catalog="Amaru2DB" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF9ncm91cF9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="auth_group_pkey" columns="id"/>
+      <exported-key name="auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id" table="auth_group_permissions" schema="public" catalog="Amaru2DB" columns="group_id"/>
+      <exported-key name="auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id" table="auth_user_groups" schema="public" catalog="Amaru2DB" columns="group_id"/>
+      <index name="auth_group_name_key" unique="true" columns="name"/>
+      <index name="auth_group_name_253ae2a6331666e8_like" unique="false" columns="name"/>
     </table>
     <table name="auth_group_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1572,6 +1607,12 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF9ncm91cF9wZXJtaXNzaW9uc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_group_permissions_pkey" columns="id"/>
+      <foreign-key name="auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_group_permissions_group_id_permission_id_key" unique="true" columns="group_id,permission_id"/>
+      <index name="auth_group_permissions_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_group_permissions_8373b171" unique="false" columns="permission_id"/>
     </table>
     <table name="auth_group_permissions_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1590,6 +1631,12 @@
       <column name="name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="codename" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="auth_permission_pkey" columns="id"/>
+      <foreign-key name="auth_content_type_id_508cf46651277a81_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id" table="auth_group_permissions" schema="public" catalog="Amaru2DB" columns="permission_id"/>
+      <exported-key name="auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id" table="auth_user_user_permissions" schema="public" catalog="Amaru2DB" columns="permission_id"/>
+      <index name="auth_permission_content_type_id_codename_key" unique="true" columns="content_type_id,codename"/>
+      <index name="auth_permission_417f1b1c" unique="false" columns="content_type_id"/>
     </table>
     <table name="auth_permission_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1615,11 +1662,24 @@
       <column name="is_staff" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_active" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="date_joined" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="auth_user_pkey" columns="id"/>
+      <exported-key name="administrador_usuario_user_id_428c50bf92d4c950_fk_auth_user_id" table="administrador_usuario" schema="public" catalog="Amaru2DB" columns="user_id"/>
+      <exported-key name="auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id" table="auth_user_groups" schema="public" catalog="Amaru2DB" columns="user_id"/>
+      <exported-key name="auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id" table="auth_user_user_permissions" schema="public" catalog="Amaru2DB" columns="user_id"/>
+      <exported-key name="django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id" table="django_admin_log" schema="public" catalog="Amaru2DB" columns="user_id"/>
+      <index name="auth_user_username_key" unique="true" columns="username"/>
+      <index name="auth_user_username_51b3b110094b8aae_like" unique="false" columns="username"/>
     </table>
     <table name="auth_user_groups" schema="public" catalog="Amaru2DB" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF91c2VyX2dyb3Vwc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_user_groups_pkey" columns="id"/>
+      <foreign-key name="auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_user_groups_user_id_group_id_key" unique="true" columns="user_id,group_id"/>
+      <index name="auth_user_groups_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_user_groups_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="auth_user_groups_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1649,6 +1709,12 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF91c2VyX3VzZXJfcGVybWlzc2lvbnNfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_user_user_permissions_pkey" columns="id"/>
+      <foreign-key name="auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_user_user_permissions_user_id_permission_id_key" unique="true" columns="user_id,permission_id"/>
+      <index name="auth_user_user_permissions_8373b171" unique="false" columns="permission_id"/>
+      <index name="auth_user_user_permissions_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="auth_user_user_permissions_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1671,6 +1737,11 @@
       <column name="change_message" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="django_admin_log_pkey" columns="id"/>
+      <foreign-key name="django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="djan_content_type_id_697914295151027a_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="django_admin_log_417f1b1c" unique="false" columns="content_type_id"/>
+      <index name="django_admin_log_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="django_admin_log_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1688,6 +1759,10 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZGphbmdvX2NvbnRlbnRfdHlwZV9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="app_label" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="model" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="django_content_type_pkey" columns="id"/>
+      <exported-key name="auth_content_type_id_508cf46651277a81_fk_django_content_type_id" table="auth_permission" schema="public" catalog="Amaru2DB" columns="content_type_id"/>
+      <exported-key name="djan_content_type_id_697914295151027a_fk_django_content_type_id" table="django_admin_log" schema="public" catalog="Amaru2DB" columns="content_type_id"/>
+      <index name="django_content_type_app_label_45f3b1d93ec8c61c_uniq" unique="true" columns="app_label,model"/>
     </table>
     <table name="django_content_type_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1706,6 +1781,7 @@
       <column name="app" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="applied" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="django_migrations_pkey" columns="id"/>
     </table>
     <table name="django_migrations_id_seq" schema="public" catalog="Amaru2DB" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1723,6 +1799,9 @@
       <column name="session_key" sqlType="varchar" precision="40" scale="0" nullable="false" jdbcType="12"/>
       <column name="session_data" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="expire_date" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="django_session_pkey" columns="session_key"/>
+      <index name="django_session_de54fa62" unique="false" columns="expire_date"/>
+      <index name="django_session_session_key_461cfeaa630ca218_like" unique="false" columns="session_key"/>
     </table>
     <procedure name="RI_FKey_cascade_del" schema="pg_catalog" catalog="Amaru2DB" type="2" remarks="cmVmZXJlbnRpYWwgaW50ZWdyaXR5IE9OIERFTEVURSBDQVNDQURF">
       <prototype>

@@ -26,7 +26,10 @@ def index(request):
         request.session['tipo_usuario'] = 'Profesor'
         return redirect('usuario:menu_principal', permanent=True)
     elif user_id == -3:
-        request.session['tipo_usuario'] = 'Estudiante'
+        request.session['tipo_usuario'] = 'Estudiante_Colegio'
+        return redirect('usuario:menu_principal', permanent=True)
+    elif user_id == -4:
+        request.session['tipo_usuario'] = 'Estudiante_Universitario'
         return redirect('usuario:menu_principal', permanent=True)
     else:
         return render(request, 'login/login.html')
@@ -52,10 +55,7 @@ def validate(request):
                 init_session(request, user)
 
     if 'registrarse' in request.POST:
-        context = {'debug_info': 'Administrador Menu Principal: Crear Usuario',
-                   'tipo_usuario': 'NUEVO USUARIO'}
-
-        return render(request, 'administrador/crear_usuario.html', context)
+        return redirect('administrador:seleccionar_cen_edu', permanent=True)
 
     return redirect('login:index')
 

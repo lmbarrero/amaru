@@ -1,0 +1,105 @@
+{% extends "administrador_base.html" %}
+
+{% block title %} Seleccionar Centro Educativo {% endblock %}
+
+{% block content %}
+    <h1 class="titulo">
+        {% if tipo_usuario == "Administrador" %}
+            {{ tipo_usuario }} <BR />
+        {% endif %}
+        Seleccionar Centro Educativo
+    </h1>
+
+    <div class="tabla" ng-controller="AdminController">
+    <form name="crear_usuario" action="{% url 'administrador:seleccionar_cen_edu' %}" method="post">
+        {% csrf_token %}
+        <table class="formulario">
+            <tbody>
+                <tr>
+                   {% verbatim %}
+                    <td class="etiqueta"><label for="departamento">Departamento:</label></td>
+                    <td class="control">
+                        <select  id="departamento"
+                                 ng-model="ang_departamento"
+                                 ng-options="p.pk as p.departamento for p in ang_posts"
+                                 ng-change="busca_cen_edu(ang_departamento, ang_tipo_cenedu)"
+                                 name="departamento">
+                            <option value="">-- Selecciona tu Departamento --</option>
+                        </select>
+                    </td>
+                    {% endverbatim %}
+                </tr>
+                <tr>
+                    <td class="radio" colspan = "2" >
+                        <div ng-init="ang_tipo_cenedu='Colegio'">
+                            <label for="colegio">Colegio</label>
+                            <input id="colegio"
+                                   type="radio"
+                                   ng-model="ang_tipo_cenedu"
+                                   ng-change="busca_cen_edu(ang_departamento, ang_tipo_cenedu)"
+                                   name="cen_edu"
+                                   value="Colegio">
+                            &nbsp;&nbsp;
+                            &nbsp;&nbsp;
+                            <label for="universidad">Universidad</label>
+                            <input id="universidad"
+                                   type="radio"
+                                   ng-model="ang_tipo_cenedu"
+                                   ng-change="busca_cen_edu(ang_departamento, ang_tipo_cenedu)"
+                                   name="cen_edu"
+                                   value="Universidad">
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-hide=" ang_departamento == null || ang_n_centros_edu == 0 ">
+                    <td class="etiqueta"><label for="nombre">Nombre:</label></td>
+                    <td class="control">
+                        <select  id="cen_edu"
+                                 ng-model="ang_nombre_cenedu"
+                                 ng-options="ac.pk as ac.centro_educativo for ac in ang_centros_edu"
+                                 ng-change="busca_cen_edu(ang_departamento, ang_tipo_cenedu)"
+                                 name="departamento">
+                            <option value="">-- Selecciona tu Centro Educativo --</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr ng-hide=" ang_departamento == null ">
+                    {% verbatim %}
+                    <td colspan="2" class="mensaje">
+                        <div ng-hide=" ang_n_centros_edu == 0 ">
+                            ¿No aparece tu centro educativo?<BR/>
+                            <a href="/administrador/registrar_cen_edu/{{ ang_departamento }}/{{ ang_cenedu }}">
+                                Solicita su registro.
+                            </a>
+                        </div>
+                        <div ng-show=" ang_n_centros_edu == 0 ">
+                            No existen
+                            <span ng-if="ang_tipo_cenedu=='Colegio'">colegios registrados</span>
+                            <span ng-if="ang_tipo_cenedu=='Universidad'">universidades registradas</span><BR/>
+                            <a href="/administrador/registrar_cen_edu/{{ ang_departamento }}/{{ ang_cenedu }}">
+                                Solicita el registro de tu
+                                <span ng-if="ang_tipo_cenedu=='Colegio'">colegio.</span>
+                                <span ng-if="ang_tipo_cenedu=='Universidad'">universidad.</span><BR/>
+                            </a>
+                        </div>
+                    </td>
+                    {% endverbatim %}
+                </tr>
+                <tr ng-hide=" ang_departamento != null " >
+                    <td colspan="2" class="mensaje">
+                        Debes seleccionar un Departamento
+                    </td>
+                </tr>
+                <tr class="botones">
+                    <td colspan = "2">
+                        <input id="origen" type="hidden" name="origen" value="Crear_Usuario">
+                        <input class="boton" id="continuar" name="create" type="submit" value="Continuar" ng-hide=" ang_departamento == null " />
+                        <input class="boton" id="cancel" name="cancel" type="submit" value="Cancelar" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    </div>
+
+{% endblock %}
